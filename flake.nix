@@ -1,5 +1,5 @@
 {
-  description = "Rust Environment";
+  description = "Newsletter Website";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
@@ -50,8 +50,14 @@
         # Linker
         mold
       ];
+      buildInputs = with pkgs; [
+        pkg-config # Needed for openssl Nix package
+        openssl # Needed for reqwest crate
+      ];
     shellHook = ''
       export HELIX_RUNTIME="$PWD/runtime"
+      export OPENSSL_NO_VENDOR=1
+      export OPENSSL_LIB_DIR="${pkgs.lib.getLib pkgs.openssl}/lib"
     '';
     };
   };
