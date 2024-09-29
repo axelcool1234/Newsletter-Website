@@ -46,6 +46,9 @@
         lldb_18
         lld_18
         clang_18
+
+        # Linker
+        mold
       ];
     shellHook = ''
       export HELIX_RUNTIME="$PWD/runtime"
